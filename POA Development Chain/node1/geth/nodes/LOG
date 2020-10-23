@@ -1,0 +1,39 @@
+=============== Oct 22, 2020 (EDT) ===============
+22:05:54.222936 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:05:54.283246 db@open opening
+22:05:54.288249 version@stat F·[] S·0B[] Sc·[]
+22:05:54.312256 db@janitor F·2 G·0
+22:05:54.313258 db@open done T·30.012ms
+22:34:06.359313 db@close closing
+22:34:06.398032 db@close done T·38.7192ms
+=============== Oct 22, 2020 (EDT) ===============
+22:34:51.538990 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:34:51.539989 version@stat F·[] S·0B[] Sc·[]
+22:34:51.540988 db@open opening
+22:34:51.540988 journal@recovery F·1
+22:34:51.542990 journal@recovery recovering @1
+22:34:51.633079 memdb@flush created L0@2 N·9059 S·180KiB "loc..seq,v22":"version,v1"
+22:34:51.638075 version@stat F·[1] S·180KiB[180KiB] Sc·[0.25]
+22:34:51.725641 db@janitor F·3 G·0
+22:34:51.725641 db@open done T·184.6529ms
+=============== Oct 22, 2020 (EDT) ===============
+22:35:52.426131 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:35:52.427133 version@stat F·[1] S·180KiB[180KiB] Sc·[0.25]
+22:35:52.427133 db@open opening
+22:35:52.427133 journal@recovery F·1
+22:35:52.430129 journal@recovery recovering @3
+22:35:52.503722 memdb@flush created L0@5 N·1 S·159B "loc..seq,v9061":"loc..seq,v9061"
+22:35:52.508719 version@stat F·[2] S·180KiB[180KiB] Sc·[0.50]
+22:35:52.572731 db@janitor F·4 G·0
+22:35:52.572731 db@open done T·145.5979ms
+23:45:52.666858 memdb@flush N·36778 S·3MiB
+23:45:52.827296 memdb@flush created L0@9 N·36778 S·595KiB "loc..seq,v9070":"n:\xfe..ing,v25305"
+23:45:52.828296 version@stat F·[3] S·776KiB[776KiB] Sc·[0.75]
+23:45:52.855882 memdb@flush committed F·1 T·189.0236ms
+23:45:52.857879 journal@remove removed @6
+23:46:22.625448 table@compaction L0·3 -> L1·0 S·776KiB Q·46235
+23:46:22.767940 table@build created L1@10 N·6332 S·261KiB "loc..seq,v9070":"version,v1"
+23:46:22.767940 version@stat F·[0 1] S·261KiB[0B 261KiB] Sc·[0.00 0.00]
+23:46:22.798587 table@compaction committed F-2 S-514KiB Ke·0 D·39506 T·173.1394ms
+23:46:22.808588 table@remove removed @9
+23:46:22.809587 table@remove removed @2
