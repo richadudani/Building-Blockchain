@@ -5,20 +5,17 @@
 ### <b> Background </b>
 The blockchain domain is rapidly changing.  Even those in a highly technical role must stay abreast of what is happening in the digital finance landscape as many FinTech companies are using and creating tools and services that are powered by blockchain. As a FinTech professional in these changing times, it's important to not only be aware of the advancements happening within the FinTech blockchain space, but to also understand the process for developing your very own blockchain.
 
-In this exercise, I have created a two-part series. Series 1 contains a case study on a Canadian FinTech company "Wealthsimple" and in the Series 2, I have tried to develope my very own blockchain.
+In this exercise, I have created a two-part series. Series 1 contains a case study on a Canadian FinTech company "Wealthsimple" and in the Series 2, I have developed my very own blockchain.
 
 ### <b> Summary </b>
 
 I have accomplished the following main tasks:
 
-1. Case Study - I have analyzed how one of the Top 10 most popular Canadian financial technology company called "Wealthsimple Inc.", which primarily specializes in online investment management services is now using blockchain technology to solve a standing financial problem in Canada.
+1. Case Study - I have analyzed how one of the Top 10 most popular Canadian financial technology company called "Wealthsimple Inc.", which primarily specializes in online investment management services is now using blockchain technology to solve a standing financial problem in Canada. I have researched the domain and written a detailed case study of the company.
 
 2. I have set up a testnet blockchain for my organization and completed the following tasks.
-
-* Used Puppeth, to generate a genesis block.
-* Used Geth, a command-line tool, to create keys, initialize nodes, and connect the nodes together.
-* The Clique Proof of Authority algorithm.
-* Tried to send a test transaction
+* Set up your custom testnet blockchain.
+* Sent a test transaction
 * Created a repository
 * Wrote instructions on how to use the chain for the rest of my team
 
@@ -75,72 +72,53 @@ I have set up a testnet blockchain for my organization "ZBank", a small, innovat
 
 ### Instructions
 
-#### Setup the custom out-of-the-box blockchain
+### Setup the custom out-of-the-box blockchain
 
-#### 1. The genesis block is the first step towards creating a new blockchain!
+#### 1. Creation of pre-approved sealer address
 
-* Open a terminal window, navigate to the `Blockchain-Tools` folder and typed the following command:
+Because the accounts must be approved, generate two new nodes with new account addresses that will serve as our pre-approved sealer addresses.
+This will be with a separate datadir for each using geth.
+
+* Open a terminal window, navigate to the `Blockchain-Tools` folder and typed the following command:     
+        
+        ./geth --datadir node1 account new 
+        ./geth --datadir node2 account new
+
+![Step1](Screenshots/Step1.png)
+![Step2](Screenshots/Step2.png)
+
+* Note the Public address of the key and Path of the secret key file for each of the node's addresses.
+
+#### 2. Generation of the genesis block
+
+* Run puppeth, name your network, and select the option to configure a new genesis block
  
         ./puppeth
- 
-* Type in a name for your network, like "puppernet" and hit enter to move forward in the wizard.
 
-* Type `2` to pick the `Configure new genesis` option, then `1` to `Create new genesis from scratch`:
+![Step3](Screenshots/Step3-puppeth.png)
 
- ![genesis](Screenshots/puppeth.png)
+* Type in a name for your network, like "zbank1" and hit enter to move forward in the wizard
+* Type `2` to pick the `Configure new genesis` option, then `1` to `Create new genesis from scratch`
+* Now you have the option to pick a consensus engine (algorithm) to use. Type `2` to choose `Clique (Proof of Authority)` and continue
 
-Now you have the option to pick a consensus engine (algorithm) to use.
+![Step4](Screenshots/Step4.png)
 
-* Type `2` to choose `Clique (Proof of Authority)` and continue.
+* You will be asked to enter accounts to be sealed. Paste both account addresses from the first step one at a time into the list of accounts to sealed
 
-You will be asked to enter a pre-fund account.
+* You will then be asked to enter accounts to be pre-funded. Paste account addresses as prior steps. There are no block rewards in PoA, so you'll need to pre-fund.
 
-* Paste both account addresses from the first step one at a time into the list of accounts to seal.
+* Then you can choose no for pre-funding the pre-compiled accounts (0x1 .. 0xff) with wei. This keeps the genesis cleaner.
 
-* Paste them again in the list of accounts to pre-fund. There are no block rewards in PoA, so you'll need to pre-fund.
-![pre-funding](Screenshots/pre-funding.png)
-
-* You can choose no for pre-funding the pre-compiled accounts (0x1 .. 0xff) with wei. This keeps the genesis cleaner.
-
+* Then type in a name for your chain/ network ID if you want. However, this is optional
 * Complete the rest of the prompts, and when you are back at the main menu, choose the "Manage existing genesis" option.
-* Export genesis configurations. This will fail to create two of the files, but you only need networkname.json.
-![exporting_genesis](Screenshots/export_genesis.png)
 
-#### 2. Creating two nodes with accounts
+![Step5](Screenshots/Step5.png)
 
-Because the accounts must be approved, we will generate two new nodes with new account addresses that will serve as our pre-approved sealer addresses.
+* Then select option '2' for exporting genesis configurations. This will fail to create two of the files, but you only need networkname.json.
 
-First, export your genesis configuration into a `yournetworkname.json` file as follows:
+![Step6](Screenshots/Step6.png)
 
-* In the `puppeth` prompt, navigate to the `Manage existing genesis` by typing `2` and hitting enter.
-
-* You may have to type your network name again first if you're launching `puppeth` fresh.
-
-* Then, type `2` again to choose the `Export genesis configurations` option, and continue with the default (current) directory by hitting enter:
-
-* This will export several `yournetworkname.json` files -- we will only be using the first one without `aleth`, `parity`, or `harmony` suffixes.
-
-Now, we need to create at least two nodes to build the chain from the genesis block onward:
-
-* Exit `puppeth` by using the `Ctrl+C` keys combination.
-
-* Create the first node's data directory using the `geth` command and a couple of command line flags by running the following line in your terminal window (Git Bash in Windows):
-
-        ./geth account new --datadir node1
-
-You should see a success message similar to this one:
-
-![geth new account](Screenshots/Nodes_creation.png)
-
-* Create a new text file for notes, and copy the node's address into the file and label it `Node 1 Key`.
-
-* Repeat the same process for the second node by replacing the `datadir` parameter with the `node2` folder.
-
-        ./geth account new --datadir node2
- 
-* Make sure to keep track of the node's addresses and which belongs to which. 
-
-#### 3. Initialize and tell the nodes to use your genesis block!
+#### 3. Initialization of the nodes to use your genesis block
 
 With the genesis block creation completed, we will now initialize the nodes with the genesis' json file.
 
@@ -151,39 +129,80 @@ With the genesis block creation completed, we will now initialize the nodes with
 
 You should see this success message:
 
-![Initialize Node](Screenshots/initialize_node1.png)
+![Step7](Screenshots/Step7.png)
+![Step8](Screenshots/Step8.png)
 
-* Since you only initialize your nodes once, you don't need to copy anything into your notes here.
+#### 4. Usage of nodes for mining blocks
 
-* Run the first node, unlock the account, enable mining, and the RPC flag. Only one node needs RPC enabled.
-![Mining Node1](Screenshots/Mining_node1.png)
+Now the nodes can be used to begin mining blocks.
 
-* Set a different peer port for the second node and use the first node's `enode` address as the `bootnode` flag.
+* Open a seperate terminal windows, run the first node, unlock the account, enable mining, and the RPC flag. Only one node needs RPC enabled.
 
-![Mining Node2](Screenshots/Mining_node2.png)
+        ./geth --datadir node1 --unlock "SEALER_ONE_ADDRESS" --mine --rpc --allow-insecure-unlock
 
-* Be sure to unlock the account and enable mining on the second node!
+ <b> NOTE: Type your password and hit enter - even if you can't see it visually! </b>
 
-#### 4. Send a test transaction (I was not able to complete from here)
+You should see this success message:
 
-* Use the MyCrypto GUI wallet to connect to the node with the exposed RPC port.
+![Step9](Screenshots/Step9.png)
+![Step10](Screenshots/Step10.png)
 
-* You will need to use a custom network, and include the chain ID, and use ETH as the currency.
+* Open a seperate terminal windows, set a different peer port for the second node and use the first node's `enode` address as the `bootnode` flag. Type the following command:
 
-![custom-node](Images/custom-node.png)
+        ./geth --datadir node2 --unlock "SEALER_TWO_ADDRESS" --mine --port 30304 --bootnodes "enode://SEALER_ONE_ENODE_ADDRESS@127.0.0.1:30303" --ipcdisable --allow-insecure-unlock
 
-* Import the keystore file from the `node1/keystore` directory into MyCrypto. This will import the private key.
+ <b> NOTE: Type your password and hit enter - even if you can't see it visually! </b>. Be sure to unlock the account and enable mining on the second node!
+You should see this success message:
 
-* Send a transaction from the `node1` account to the `node2` account.
+![Step11](Screenshots/Step11.png)
+![Step12](Screenshots/Step12.png)
 
-* Copy the transaction hash and paste it into the "TX Status" section of the app, or click "TX Status" in the popup.
+* Your private PoA blockchain should now be running!
 
-* Screenshot the transaction metadata (status, tx hash, block number, etc) and save it to your Screenshots folder.
+#### 5. Blockchain addition to MyCrypto for testing
+
+With both nodes up and running, the blockchain can be added to MyCrypto for testing by following below steps:
+
+* Open the MyCrypto app, then click Change Network at the bottom left
+
+![Change Network](Images/change-network.png)
+
+* Click "Add Custom Node", then add the custom network information that you set in the genesis.
+* Make sure that you scroll down to choose Custom in the "Network" column to reveal more options like Chain ID
+* Type ETH in the Currency box
+* In the Chain ID box, type the chain id you generated during genesis creation 
+* In the URL box type: http://127.0.0.1:8545.  This points to the default RPC port on your local machine
+* Finally, click Save & Use Custom Node
+
+![Step15 Set Up Custom Node](Screenshots/Step15_Custom_Node.png)
+
+#### 6. Sending transaction between accounts
+
+After connecting to the custom network in MyCrypto, it can be tested by sending money between accounts.
+
+* Select the 'View & Send' option from the left menu pane, then click 'Keystore file'.
+
+![Select Keystore File](Images/select_keystore_file.png)
+
+* On the next screen, click Select Wallet File, then navigate to the keystore directory inside your Node1 directory, select the file located there, provide your password when prompted and then click Unlock.
+* This will open your account wallet inside MyCrypto.
+* This is the balance that was pre-funded for this account in the genesis configuration; however, these ETH tokens are just for testing purposes.
+
+![Keystore File](Images/keystore_unlock.gif)
+
+* Send a transaction from the `node1` account to the `node2` account. In the To Address box, type the account address from Node2, then fill in an arbitrary amount of ETH
+
+* Confirm the transaction by clicking "Send Transaction", and the "Send" button in the pop-up window.
+
+* Click the Check TX Status when the green message pops up, confirm the logout
+
+* You should see the transaction go from Pending to Successful in around the same blocktime you set in the genesis
+
+* You can click the Check TX Status button to update the status.
+
+![transaction-status](Screenshots/StepFinal_Transaction_Status.png)
 
 * Celebrate, you just created a blockchain and sent a transaction!
-
-![transaction-success](Images/transaction-success.png)
-
 
 #### Hints
 
