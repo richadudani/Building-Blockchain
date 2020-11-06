@@ -84,8 +84,8 @@ This will be with a separate datadir for each using geth.
         ./geth --datadir node1 account new 
         ./geth --datadir node2 account new
 
-![Step1](Screenshots/Step1.png)
-![Step2](Screenshots/Step2.png)
+![Step1](Screenshots/Step1.PNG)
+![Step2](Screenshots/Step2.PNG)
 
 * Note the Public address of the key and Path of the secret key file for each of the node's addresses.
 
@@ -95,13 +95,13 @@ This will be with a separate datadir for each using geth.
  
         ./puppeth
 
-![Step3](Screenshots/Step3-puppeth.png)
+![Step3](Screenshots/Step3-puppeth.PNG)
 
 * Type in a name for your network, like "zbank1" and hit enter to move forward in the wizard
 * Type `2` to pick the `Configure new genesis` option, then `1` to `Create new genesis from scratch`
 * Now you have the option to pick a consensus engine (algorithm) to use. Type `2` to choose `Clique (Proof of Authority)` and continue
 
-![Step4](Screenshots/Step4.png)
+![Step4](Screenshots/Step4.PNG)
 
 * You will be asked to enter accounts to be sealed. Paste both account addresses from the first step one at a time into the list of accounts to sealed
 
@@ -112,11 +112,11 @@ This will be with a separate datadir for each using geth.
 * Then type in a name for your chain/ network ID if you want. However, this is optional
 * Complete the rest of the prompts, and when you are back at the main menu, choose the "Manage existing genesis" option.
 
-![Step5](Screenshots/Step5.png)
+![Step5](Screenshots/Step5.PNG)
 
 * Then select option '2' for exporting genesis configurations. This will fail to create two of the files, but you only need networkname.json.
 
-![Step6](Screenshots/Step6.png)
+![Step6](Screenshots/Step6.PNG)
 
 #### 3. Initialization of the nodes to use your genesis block
 
@@ -129,7 +129,7 @@ With the genesis block creation completed, we will now initialize the nodes with
 
 You should see this success message:
 
-![Step7](Screenshots/Step7.png)
+![Step7](Screenshots/Step7.PNG)
 ![Step8](Screenshots/Step8.png)
 
 #### 4. Usage of nodes for mining blocks
@@ -144,8 +144,8 @@ Now the nodes can be used to begin mining blocks.
 
 You should see this success message:
 
-![Step9](Screenshots/Step9.png)
-![Step10](Screenshots/Step10.png)
+![Step9](Screenshots/Step9.PNG)
+![Step10](Screenshots/Step10.PNG)
 
 * Open a seperate terminal windows, set a different peer port for the second node and use the first node's `enode` address as the `bootnode` flag. Type the following command:
 
@@ -174,7 +174,7 @@ With both nodes up and running, the blockchain can be added to MyCrypto for test
 * In the URL box type: http://127.0.0.1:8545.  This points to the default RPC port on your local machine
 * Finally, click Save & Use Custom Node
 
-![Step15 Set Up Custom Node](Screenshots/Step15_Custom_Node.png)
+![Step15 Set Up Custom Node](Screenshots/Step15_Custom_Node.PNG)
 
 #### 6. Sending transaction between accounts
 
@@ -200,7 +200,7 @@ After connecting to the custom network in MyCrypto, it can be tested by sending 
 
 * You can click the Check TX Status button to update the status.
 
-![transaction-status](Screenshots/StepFinal_Transaction_Status.png)
+![transaction-status](Screenshots/StepFinal_Transaction_Status.PNG)
 
 * Celebrate, you just created a blockchain and sent a transaction!
 
