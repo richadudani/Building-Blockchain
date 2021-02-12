@@ -1,4 +1,4 @@
-# Unit 18 | Building the Blockchain
+# Building the Blockchain
 
 ![Block Chain Technology](Images/BC.jpg)
 
@@ -21,7 +21,7 @@ I have accomplished the following main tasks:
 
 ### <b> Files locations in Github </b>
 
-1. I have created a repository called `blockchain-homework` in the Github.
+1. I have created a repository called `Building-Blockchain` in the Github.
 
 2. Inside the above there are two sub-folders named "Blockchain Case Study" and "POA Development Chain" which has all the solution files
 
